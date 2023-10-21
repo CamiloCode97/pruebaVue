@@ -1,32 +1,62 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="secundary"
+      dark
+    >
+      <h1>Prueba Vue Js Camilo Garzon</h1>
+      
+
+      <v-spacer></v-spacer>
+
+
+
+      <v-btn 
+      v-for="(item, index) in rutas" :key="index"
+      text
+      @click="insertarRuta(item.ruta)">
+
+        <span class="mr-2">{{ item.nombre }}</span>
+  
+      </v-btn>
+  
+
+    </v-app-bar>
+
+    <v-main>
+      <router-view class="view"></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+//import DataPost from '../src/components/DataPost.vue'
+//import Image from '../src/components/Image.vue'
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+
+  name: 'App',
+  components: {
+    //DataPost,
+   // Image,
+  
+
+  },
+
+  data: () => ({
+    rutas:[
+      {nombre:'Datos', ruta:'/Dato'},
+      {nombre:'Imagenes', ruta:'/imagen'}
+    ]
+  }),
+
+  methods: {
+    insertarRuta(ruta){
+      this.$router.push(ruta).catch(() => {})
+    }
+  }
+};
+</script>
